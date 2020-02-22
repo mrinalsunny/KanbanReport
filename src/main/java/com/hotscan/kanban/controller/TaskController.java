@@ -16,7 +16,7 @@ import com.hotscan.kanban.model.Task;
 import com.hotscan.kanban.service.TaskService;
 
 @RestController
-@RequestMapping("/task")
+@RequestMapping("/kanban/task")
 public class TaskController {
 
 	@Autowired
@@ -32,9 +32,9 @@ public class TaskController {
 		return service.getTask(id);
 	}
 
-	@PostMapping("/set")
-	public boolean setTask(@RequestBody Task task) {
-		return service.setTask(task);
+	@PostMapping("/add")
+	public boolean addTask(@RequestBody Task task) {
+		return service.addTask(task);
 	}
 	
 	@PutMapping("/update/{id}")

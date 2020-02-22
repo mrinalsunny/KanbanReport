@@ -33,25 +33,30 @@ public class KanbanQueueService {
 		}
 	}
 	
-	public boolean setQueue(KanbanQueue queue) {
+	public boolean addQueue(KanbanQueue queue) {
 		try {
-			queue.setModifiedDate(new Date());
-			repo.save(queue);
+			if(queue.getName()!= null && !queue.getName().isEmpty()) {
+				queue.setModifiedDate(new Date());
+				repo.save(queue);
+				return true;
+			}
+			else
+				return false;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
-		return true;
 	}
 
 	public boolean updateQueue(long id, KanbanQueue queue) {
 		try {
 			KanbanQueue toUpdate = repo.findById(id).get();
+			System.out.println(toUpdate);
 
-			if (queue.getName().length() > 0)
+			if (queue.getName()!= null && !queue.getName().isEmpty())
 				toUpdate.setName(queue.getName());
 
-			if (queue.getDetails().length() > 0)
+			if (queue.getDetails() != null && !queue.getDetails().isEmpty())
 				toUpdate.setDetails(queue.getDetails());
 
 			toUpdate.setModifiedDate(new Date());
@@ -62,7 +67,7 @@ public class KanbanQueueService {
 			e.printStackTrace();
 			return false;
 		}
-		return true;
+		return true;	
 	}
 
 	public boolean deleteQueue(long id) {

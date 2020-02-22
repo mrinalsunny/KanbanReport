@@ -16,7 +16,7 @@ import com.hotscan.kanban.model.KanbanQueue;
 import com.hotscan.kanban.service.KanbanQueueService;
 
 @RestController
-@RequestMapping("/queue")
+@RequestMapping("/kanban/queue")
 public class KanbanQueueController {
 
 	@Autowired
@@ -32,9 +32,9 @@ public class KanbanQueueController {
 		return service.getQueue(id);
 	}
 
-	@PostMapping("/set")
-	public boolean setQueue(@RequestBody KanbanQueue queue) {
-		return service.setQueue(queue);
+	@PostMapping("/add")
+	public boolean addQueue(@RequestBody KanbanQueue queue) {
+		return service.addQueue(queue);
 	}
 	
 	@PutMapping("/update/{id}")

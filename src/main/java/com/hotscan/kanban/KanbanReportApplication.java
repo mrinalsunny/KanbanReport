@@ -7,7 +7,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.hotscan.kanban.repo.TaskRepo;
 
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+
 @SpringBootApplication
+@EnableSwagger2
 public class KanbanReportApplication implements ApplicationRunner {
 
 	@Autowired

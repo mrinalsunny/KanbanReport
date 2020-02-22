@@ -21,17 +21,28 @@ public class TaskService {
 	}
 	
 	public Task getTask(long id) {
-		return repo.findById(id).get();
+		try {
+			return repo.findById(id).get();
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
-	public boolean setTask(Task task) {
+	public boolean addTask(Task task) {
 		try {
-			repo.save(task);
+			if(task.getName() != null && !task.getName().isEmpty()) {
+				task.setModifiedDate(new Date());
+				repo.save(task);
+				return true;
+			}
+			else {
+				return false;
+			}
 		}catch(Exception e) {
 			e.printStackTrace();
 			return false;
 		}
-		return true;
 	}
 
 	
@@ -39,25 +50,25 @@ public class TaskService {
 		try {
 			Task tooUpdate = repo.findById(id).get();
 			
-			if(task.getName().length()>0)
+			if(task.getName() != null && !task.getName().isEmpty())
 				tooUpdate.setName(task.getName());
 			
-			if(task.getDetails().length()>0)
+			if(task.getDetails() != null && !task.getDetails().isEmpty())
 				tooUpdate.setDetails(task.getDetails());
 			
-			if(task.getOwner().length()>0)
+			if(task.getOwner() != null && !task.getOwner().isEmpty())
 				tooUpdate.setOwner(task.getOwner());
 			
-			if(task.getFromQueue().length()>0)
+			if(task.getFromQueue() != null && !task.getFromQueue().isEmpty())
 				tooUpdate.setFromQueue(task.getFromQueue());
 			
-			if(task.getToQueue().length()>0)
+			if(task.getToQueue() != null && !task.getToQueue().isEmpty())
 				tooUpdate.setToQueue(task.getToQueue());
 			
-			if(task.getAssigned().length()>0)
+			if(task.getAssigned() != null && !task.getAssigned().isEmpty())
 				tooUpdate.setAssigned(task.getAssigned());
 			
-			if(task.getStatus().length()>0)
+			if(task.getStatus() != null && !task.getStatus().isEmpty())
 				tooUpdate.setStatus(task.getStatus());
 			
 			tooUpdate.setModifiedDate(new Date());
