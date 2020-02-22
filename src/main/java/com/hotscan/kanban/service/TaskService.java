@@ -1,6 +1,7 @@
 package com.hotscan.kanban.service;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,17 +9,21 @@ import org.springframework.stereotype.Service;
 import com.hotscan.kanban.model.Task;
 import com.hotscan.kanban.repo.TaskRepo;
 
+
 @Service
 public class TaskService {
 	
 	@Autowired
 	TaskRepo repo;
 	
+	public List<Task> getTasks() {
+		return repo.findAll();
+	}
+	
 	public Task getTask(long id) {
 		return repo.findById(id).get();
 	}
 
-	
 	public boolean setTask(Task task) {
 		try {
 			repo.save(task);
@@ -32,33 +37,32 @@ public class TaskService {
 	
 	public boolean updateTask(long id, Task task) {
 		try {
-			Task taskToUpdate = repo.findById(id).get();
-			System.out.println(taskToUpdate);
+			Task tooUpdate = repo.findById(id).get();
 			
 			if(task.getName().length()>0)
-				taskToUpdate.setName(task.getName());
+				tooUpdate.setName(task.getName());
 			
 			if(task.getDetails().length()>0)
-				taskToUpdate.setDetails(task.getDetails());
+				tooUpdate.setDetails(task.getDetails());
 			
 			if(task.getOwner().length()>0)
-				taskToUpdate.setOwner(task.getOwner());
+				tooUpdate.setOwner(task.getOwner());
 			
 			if(task.getFromQueue().length()>0)
-				taskToUpdate.setFromQueue(task.getFromQueue());
+				tooUpdate.setFromQueue(task.getFromQueue());
 			
 			if(task.getToQueue().length()>0)
-				taskToUpdate.setToQueue(task.getToQueue());
+				tooUpdate.setToQueue(task.getToQueue());
 			
 			if(task.getAssigned().length()>0)
-				taskToUpdate.setAssigned(task.getAssigned());
+				tooUpdate.setAssigned(task.getAssigned());
 			
 			if(task.getStatus().length()>0)
-				taskToUpdate.setStatus(task.getStatus());
+				tooUpdate.setStatus(task.getStatus());
 			
-			taskToUpdate.setModifiedDate(new Date());
+			tooUpdate.setModifiedDate(new Date());
 			
-			repo.save(taskToUpdate);
+			repo.save(tooUpdate);
 			
 		}catch(Exception e) {
 			e.printStackTrace();

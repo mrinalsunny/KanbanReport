@@ -12,38 +12,38 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hotscan.kanban.model.Task;
-import com.hotscan.kanban.service.TaskService;
+import com.hotscan.kanban.model.KanbanQueue;
+import com.hotscan.kanban.service.KanbanQueueService;
 
 @RestController
-@RequestMapping("/task")
-public class TaskController {
+@RequestMapping("/queue")
+public class KanbanQueueController {
 
 	@Autowired
-	TaskService service;
+	KanbanQueueService service;
 
 	@GetMapping("/get/all")
-	public List<Task> getTask() {
-		return service.getTasks();
+	public List<KanbanQueue> getQueues() {
+		return service.getQueues();
 	}
 	
 	@GetMapping("/get/{id}")
-	public Task getTask(@PathVariable long id) {
-		return service.getTask(id);
+	public KanbanQueue getQueue(@PathVariable long id) {
+		return service.getQueue(id);
 	}
 
 	@PostMapping("/set")
-	public boolean setTask(@RequestBody Task task) {
-		return service.setTask(task);
+	public boolean setQueue(@RequestBody KanbanQueue queue) {
+		return service.setQueue(queue);
 	}
 	
 	@PutMapping("/update/{id}")
-	public boolean updateTask(@PathVariable("id") long id, @RequestBody Task task) {
-		return service.updateTask(id, task);
+	public boolean updateQueue(@PathVariable("id") long id, @RequestBody KanbanQueue queue) {
+		return service.updateQueue(id, queue);
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public boolean deleteTask(@PathVariable("id") long id) {
-		return service.deleteTask(id);
+	public boolean deleteQueue(@PathVariable("id") long id) {
+		return service.deleteQueue(id);
 	}
 }

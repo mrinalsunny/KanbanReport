@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Queue")
-public class TaskQueue {
+public class KanbanQueue {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TASK_QUEUE_SEQ")
@@ -23,7 +23,7 @@ public class TaskQueue {
 	@Column(name = "MODIFIED_DATE")
 	private Date modifiedDate;
 
-	public TaskQueue() {
+	public KanbanQueue() {
 	}
 
 	public long getId() {
@@ -58,7 +58,7 @@ public class TaskQueue {
 		this.modifiedDate = modifiedDate;
 	}
 
-	public TaskQueue(long id, String name, String details, Date modifiedDate) {
+	public KanbanQueue(long id, String name, String details, Date modifiedDate) {
 		super();
 		this.id = id;
 		this.name = name;
