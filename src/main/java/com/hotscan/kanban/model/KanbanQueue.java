@@ -17,7 +17,7 @@ public class KanbanQueue {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TASK_QUEUE_SEQ")
 	@SequenceGenerator(sequenceName = "task_queue_seq", allocationSize = 1, name = "TASK_QUEUE_SEQ")
-	private long id;
+	private Long id;
 	private String name;
 	private String details;
 	@Column(name = "MODIFIED_DATE")
@@ -26,7 +26,7 @@ public class KanbanQueue {
 	public KanbanQueue() {
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 

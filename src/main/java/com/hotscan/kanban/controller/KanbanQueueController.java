@@ -28,7 +28,7 @@ public class KanbanQueueController {
 	}
 	
 	@GetMapping("/get/{id}")
-	public KanbanQueue getQueue(@PathVariable long id) {
+	public KanbanQueue getQueue(@PathVariable Long id) {
 		return service.getQueue(id);
 	}
 
@@ -38,12 +38,12 @@ public class KanbanQueueController {
 	}
 	
 	@PutMapping("/update/{id}")
-	public boolean updateQueue(@PathVariable("id") long id, @RequestBody KanbanQueue queue) {
+	public boolean updateQueue(@PathVariable("id") Long id, @RequestBody KanbanQueue queue) {
 		return service.updateQueue(id, queue);
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public boolean deleteQueue(@PathVariable("id") long id) {
+	public boolean deleteQueue(@PathVariable("id") Long id) {
 		return service.deleteQueue(id);
 	}
 }

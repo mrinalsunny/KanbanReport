@@ -17,7 +17,9 @@ public class Task {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TASK_SEQ")
 	@SequenceGenerator(sequenceName = "task_seq", allocationSize = 1, name = "TASK_SEQ")
-	private long id;
+	private Long id;
+	@Column(name = "QUEUE_ID")
+	private Long queueId;
 	private String name;
 	private String details;
 	private String owner;
@@ -33,12 +35,35 @@ public class Task {
 	public Task() {
 	}
 
-	public long getId() {
+	public Task(long id, long queueId, String name, String details, String owner, String fromQueue, String toQueue,
+			String assigned, String status, Date modifiedDate) {
+		super();
+		this.id = id;
+		this.queueId = queueId;
+		this.name = name;
+		this.details = details;
+		this.owner = owner;
+		this.fromQueue = fromQueue;
+		this.toQueue = toQueue;
+		this.assigned = assigned;
+		this.status = status;
+		this.modifiedDate = modifiedDate;
+	}
+
+	public Long getId() {
 		return id;
 	}
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public Long getQueueId() {
+		return queueId;
+	}
+
+	public void setQueueId(long queueId) {
+		this.queueId = queueId;
 	}
 
 	public String getName() {
@@ -105,25 +130,11 @@ public class Task {
 		this.modifiedDate = modifiedDate;
 	}
 
-	public Task(long id, String name, String details, String owner, String fromQueue, String toQueue, String assigned,
-			String status, Date modifiedDate) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.details = details;
-		this.owner = owner;
-		this.fromQueue = fromQueue;
-		this.toQueue = toQueue;
-		this.assigned = assigned;
-		this.status = status;
-		this.modifiedDate = modifiedDate;
-	}
-
 	@Override
 	public String toString() {
-		return "Task [id=" + id + ", name=" + name + ", details=" + details + ", owner=" + owner + ", fromQueue="
-				+ fromQueue + ", toQueue=" + toQueue + ", assigned=" + assigned + ", status=" + status
-				+ ", modifiedDate=" + modifiedDate + "]";
+		return "Task [id=" + id + ", queueId=" + queueId + ", name=" + name + ", details=" + details + ", owner="
+				+ owner + ", fromQueue=" + fromQueue + ", toQueue=" + toQueue + ", assigned=" + assigned + ", status="
+				+ status + ", modifiedDate=" + modifiedDate + "]";
 	}
 
 }
