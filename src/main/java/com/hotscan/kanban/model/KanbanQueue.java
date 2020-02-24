@@ -14,15 +14,21 @@ import javax.persistence.Table;
 @Table(name = "Queue")
 public class KanbanQueue {
 
+	//------------------------member variables start
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TASK_QUEUE_SEQ")
 	@SequenceGenerator(sequenceName = "task_queue_seq", allocationSize = 1, name = "TASK_QUEUE_SEQ")
 	private Long id;
+	
+	@Column(nullable = false)
 	private String name;
+	
 	private String details;
+	
 	@Column(name = "MODIFIED_DATE")
 	private Date modifiedDate;
-
+	//------------------------member variables end
+	
 	public KanbanQueue() {
 	}
 

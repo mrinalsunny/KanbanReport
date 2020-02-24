@@ -30,7 +30,7 @@ public class TaskService {
 		try {
 			return repo.findById(id).get();
 		} catch (Exception e) {
-			e.printStackTrace();
+			exceptions.serviceException(e);
 			return null;
 		}
 	}
@@ -49,7 +49,7 @@ public class TaskService {
 				return false;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			exceptions.serviceException(e);
 			return false;
 		}
 	}
@@ -87,7 +87,7 @@ public class TaskService {
 			repo.save(toUpdate);
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			exceptions.serviceException(e);
 			return false;
 		}
 		return true;
@@ -97,7 +97,7 @@ public class TaskService {
 		try {
 			repo.deleteById(id);
 		} catch (Exception e) {
-			e.printStackTrace();
+			exceptions.serviceException(e);
 			return false;
 		}
 		return true;

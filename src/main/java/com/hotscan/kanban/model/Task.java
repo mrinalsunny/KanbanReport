@@ -14,24 +14,37 @@ import javax.persistence.Table;
 @Table
 public class Task {
 
+	//------------------------member variables start
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TASK_SEQ")
 	@SequenceGenerator(sequenceName = "task_seq", allocationSize = 1, name = "TASK_SEQ")
 	private Long id;
-	@Column(name = "QUEUE_ID")
+	
+	@Column(name = "QUEUE_ID", nullable = false)
 	private Long queueId;
+	
+	@Column(nullable = false)
 	private String name;
+	
 	private String details;
+	
 	private String owner;
+	
 	@Column(name = "FROM_QUEUE")
 	private String fromQueue;
+	
 	@Column(name = "TO_QUEUE")
 	private String toQueue;
+	
 	private String assigned;
+	
 	private String status;
+	
 	@Column(name = "MODIFIED_DATE")
 	private Date modifiedDate;
-
+	//------------------------member variables end
+	
+	
 	public Task() {
 	}
 
