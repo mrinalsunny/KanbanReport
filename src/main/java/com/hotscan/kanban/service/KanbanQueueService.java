@@ -14,12 +14,15 @@ public class KanbanQueueService {
 
 	@Autowired
 	KanbanTaskQueueRepo repo;
+	
+	@Autowired
+	ResourceExceptions exceptions;
 
 	public List<KanbanQueue> getQueues() {
 		try {
 		return repo.findAll();
 		}catch(Exception e) {
-			e.printStackTrace();
+			exceptions.serviceException(e);
 			return null;
 		}
 	}
@@ -28,7 +31,7 @@ public class KanbanQueueService {
 		try {
 			return repo.findById(id).get();
 		}catch(Exception e) {
-			e.printStackTrace();
+			exceptions.serviceException(e);
 			return null;
 		}
 	}
@@ -43,7 +46,7 @@ public class KanbanQueueService {
 			else
 				return false;
 		} catch (Exception e) {
-			e.printStackTrace();
+			exceptions.serviceException(e);
 			return false;
 		}
 	}
@@ -64,7 +67,7 @@ public class KanbanQueueService {
 			repo.save(toUpdate);
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			exceptions.serviceException(e);
 			return false;
 		}
 		return true;	
@@ -74,7 +77,7 @@ public class KanbanQueueService {
 		try {
 			repo.deleteById(id);
 		}catch(Exception e) {
-			e.printStackTrace();
+			exceptions.serviceException(e);
 			return false;
 		}
 		return true;
